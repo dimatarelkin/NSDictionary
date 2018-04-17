@@ -59,7 +59,7 @@ int main(int argc, char * argv[]) {
         
 // these objects were deallocated and these calls will crash program
         
-        [dictionary objectForKey:@0]; // except this call, because it's dictionary was made by literal
+        [dictionary objectForKey:@0]; // except this call, because this dictionary was made by literal
         //[mutDict objectForKey:@1];
         //[keys objectAtIndex:0];
         //[sortedKeys objectAtIndex:0];
