@@ -22,8 +22,8 @@ int main(int argc, char * argv[]) {
         
 //2 Make it mutable and add several new entries.
         NSMutableDictionary* mutDict = [dictionary mutableCopy];
-        [mutDict setObject:@"four_entry" forKey:@4];
-        [mutDict setObject:@"five_entry" forKey:@5];
+        [mutDict setObject:@"fourth_entry" forKey:@4];
+        [mutDict setObject:@"fifth_entry" forKey:@5];
         [mutDict setObject:@"zero_entry" forKey:@0];
         
         NSLog(@"%@", [mutDict description]);
@@ -33,33 +33,38 @@ int main(int argc, char * argv[]) {
         [mutDict keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj1 compare:obj2];
         }];
-    
         NSLog(@"%@", [mutDict description]);
         
         NSArray* keys = [mutDict allKeys];
-        //in ascending order
+        
+    //in ascending order
         NSArray* sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj1 compare:obj2];
         }];
         
-        NSLog(@"Ascending %@",[sortedKeys componentsJoinedByString:@"-"]);
+        // Check whether required value is contained in the dictionary.
+        NSLog(@"Ascending order: %@",[sortedKeys componentsJoinedByString:@"-"]);
         
-        //in descending order
+    //in descending order
         sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj2 compare:obj1];
         }];
-        
-        NSLog(@"Descenfing %@",[sortedKeys componentsJoinedByString:@"-"]);
 
-//4 Check whether required value is contained in the dictionary.
-        //[dictionary release];
+        // Check whether required value is contained in the dictionary.
+        NSLog(@"Descenfing order: %@",[sortedKeys componentsJoinedByString:@"-"]);
+
+// Check whether required value is contained in the dictionary.
+        NSLog(@"Value for this key is: %@", [dictionary objectForKey:@1]); //first
+        
+        
+        //releasing objects
         [mutDict release];
         [keys release];
         [sortedKeys release];
         
 // these objects were deallocated and these calls will crash program
         
-        [dictionary objectForKey:@0]; //except this call, because dictionary was made using literal syntax (will be autoreleased)
+        [dictionary objectForKey:@2]; //except this call, because dictionary was made using literal syntax (will be autoreleased)
         //[mutDict objectForKey:@1];
         //[keys objectAtIndex:0];
         //[sortedKeys objectAtIndex:0];
