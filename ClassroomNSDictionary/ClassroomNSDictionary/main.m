@@ -18,7 +18,7 @@ int main(int argc, char * argv[]) {
                                      @1 : @"first",
                                      @2 : @"second",
                                      @3 : @"third"
-                                     };
+                                     };                     //this dictionary will be autoreleased
         
 //2 Make it mutable and add several new entries.
         NSMutableDictionary* mutDict = [dictionary mutableCopy];
@@ -59,7 +59,7 @@ int main(int argc, char * argv[]) {
         
 // these objects were deallocated and these calls will crash program
         
-        [dictionary objectForKey:@0]; // except this call, because this dictionary was made by literal
+        [dictionary objectForKey:@0]; //except this call, because dictionary was made using literal syntax (will be autoreleased)
         //[mutDict objectForKey:@1];
         //[keys objectAtIndex:0];
         //[sortedKeys objectAtIndex:0];
